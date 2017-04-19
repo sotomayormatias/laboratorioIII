@@ -10,6 +10,7 @@ class Archivo{
 		$destino = "tmp/" . $archivoTmp;
 		
 		$tipoArchivo = pathinfo($_FILES["archivo"]["name"], PATHINFO_EXTENSION);
+
 		//VERIFICO EL TAMA�O MAXIMO QUE PERMITO SUBIR
 		if ($_FILES["archivo"]["size"] > 1000000) {
 			$retorno["Exito"] = FALSE;

@@ -47,7 +47,7 @@ function subirFoto() {
         async: true
     })
         .done(function (objJson) {
-            if (!objJson.exito) {
+            if (!objJson.Exito) {
                 alert(objJson.Mensaje);
                 return;
             }
@@ -79,9 +79,10 @@ function borrarFoto() {
         async: true
     })
         .done(function (objJson) {
-           
-           //completar
-
+            if (!objJson.Exito) {
+                alert(objJson.Mensaje);
+                return;
+            }
             $("#divFoto").html("");
             $("#hdnArchivoTemp").val("");
 
@@ -107,7 +108,10 @@ function agregarProducto() {
     producto.codBarra = codBarra;
     producto.archivo = archivo;
 
-   // validar campos...
+    if (!validar(producto)) {
+        alert("Debe completar todos los campos!!!");
+        return;
+    }
 
      $.ajax({
         type: 'POST',
@@ -121,7 +125,12 @@ function agregarProducto() {
     })
         .done(function (objJson) {
 
-         // completar
+            if (!objJson.Exito) {
+                alert(objJson.Mensaje);
+                return;
+            }
+
+            alert(objJson.Mensaje);
 
             borrarFoto();
 
@@ -164,7 +173,12 @@ function eliminarProducto(producto) {
     })
         .done(function (objJson) {
 
-            // completar           
+            if (!objJson.Exito) {
+                alert(objJson.Mensaje);
+                return;
+            }
+
+            alert(objJson.Mensaje);
 
             mostrarGrilla();
 
@@ -173,6 +187,7 @@ function eliminarProducto(producto) {
             alert(jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
         });
 }
+
 
 
 function modificarProducto(objJson) {
