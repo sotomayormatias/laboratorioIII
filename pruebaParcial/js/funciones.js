@@ -49,3 +49,15 @@ function deshacerFoto($path){
     $request.open("POST", $url, true);
     $request.send(formData);
 }
+
+function agregarProducto(){
+    $codigo = $("#codigo").val();
+    $nombre = $("#nombre").val();
+    var archivo = $("#foto")[0];
+
+    var formData = new FormData();
+    formData.append("codigo", $codigo);
+    formData.append("nombre", $nombre);
+    formData.append("archivo", archivo.files[0]);
+    formData.append("accion", "agregarProducto");
+}

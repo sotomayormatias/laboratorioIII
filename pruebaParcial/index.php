@@ -24,18 +24,19 @@
         <h1>Ejemplo ABM-LISTADO <small>- con archivos, AJAX y jQuery -</small></h1>
 
         <div class="col-md-6">
-            <form action="administracion.php" method="POST" enctype="multipart/form-data">
+            <!--<form action="administracion.php" method="POST" enctype="multipart/form-data">-->
+            <div id="form">
                 <div class="form-group">
-                <input class="form-control" type="text" name="codigo" placeholder="Ingrese Código">
+                <input class="form-control" type="text" name="codigo" id="codigo" placeholder="Ingrese Código">
                 </div>
                 <div class="form-group">
-                <input class="form-control" type="text" name="nombre" placeholder="Ingrese Nombre">
+                <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Ingrese Nombre">
                 </div>
                 <div class="form-group">
                 <input class="form-control" type="file" name="foto" id="foto" onchange="previsualizarFoto()">
                 </div>
-                <input class="btn btn-primary btn-block" type="submit">
-            </form>
+                <input class="btn btn-primary btn-block" type="button" onclick="agregarProducto()" value="Agregar">
+            </div>
             <div id="divFoto"></div>
         </div>
         <div class="col-md-6">
