@@ -1,7 +1,10 @@
+var $url = "./administracion.php";
+
 function previsualizarFoto(){
     var archivo = $("#foto")[0];
     var formData = new FormData();
     formData.append("archivo", archivo.files[0]);
+    formData.append("accion", "previsualizarFoto");
 
     // $.ajax({
     //     type: "POST",
@@ -23,10 +26,26 @@ function previsualizarFoto(){
     var $request = new XMLHttpRequest();
     $request.onreadystatechange = function(){
         if($request.readyState == 4 && $request.status == 200){
-            // alert($request.responseText);
             $("#divFoto").html(JSON.parse($request.responseText).html);
         }
     };
-    $request.open("POST", "./administracion.php", true);
+    $request.open("POST", $url, true);
+    $request.send(formData);
+}
+
+function deshacerFoto($path){
+
+    var formData = new FormData();
+    formData.append("accion", "deshacerFoto");
+    formData.append("pathFoto", $path);
+
+    var $request = new XMLHttpRequest();
+    $request.onreadystatechange = function(){
+        if($request.readyState == 4 && $request.status == 200){
+            $("#divFoto").html("");
+            $("#foto").val("");
+        }
+    };
+    $request.open("POST", $url, true);
     $request.send(formData);
 }
