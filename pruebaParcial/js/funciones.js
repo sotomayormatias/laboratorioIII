@@ -115,3 +115,21 @@ function eliminarProducto(prod){
     $request.open("POST", $url, true);
     $request.send(formData);
 }
+
+function editarProducto(prod){
+    var formData = new FormData();
+    formData.append("codBarra", prod);
+    formData.append("accion", "editarProducto");
+
+    $request = new XMLHttpRequest();
+    $request.onreadystatechange = function(){
+        if($request.readyState == 4 && $request.status == 200){
+            $("#codigo").val(JSON.parse($request.responseText).codBarra);
+            $("#nombre").val(JSON.parse($request.responseText).nombre);
+            $("#codigo").attr("readonly", "readonly");
+        }
+    };
+
+    $request.open("POST", $url, true);
+    $request.send(formData);
+}

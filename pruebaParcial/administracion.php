@@ -83,5 +83,26 @@
         $contents = file_get_contents("archivos/productos.txt");
         $contents = str_replace($lineaABorrar, '', $contents);
         file_put_contents("archivos/productos.txt", $contents);
+        break;
+
+    case "editarProducto":
+        $codBarra = $_POST["codBarra"];
+        $nombre = "";
+        $foto = "";
+
+        $file = fopen("archivos/productos.txt", "r");
+        while(!feof($file)){
+            $linea = fgets($file);
+            $producto = explode(" - ", $linea);
+            if(trim($producto[0]) == $codBarra){
+                $nombre = $producto[1];
+                $foto = $producto[2];
+            }
+        }
+        fclose($file);
+        $json = json_encode(array("codBarra"=>$codBarra, "nombre"=>$nombre, "foto"=>$foto));
+        echo $json;
+
+        break;
     }
 ?>
