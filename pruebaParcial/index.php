@@ -39,7 +39,7 @@
             </div>
             <div id="divFoto"></div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6" id="tabla">
             <table class="table table-hover table-striped table-bordered">
                 <thead>
                     <tr>

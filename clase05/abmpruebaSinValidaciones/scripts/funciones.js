@@ -102,6 +102,7 @@ function agregarProducto() {
     var archivo = $('#hdnArchivoTemp').val();
     var queHago = $('#hdnQueHago').val();
 
+    alert(archivo);
     
     var producto = {};
     producto.nombre = nombre;
