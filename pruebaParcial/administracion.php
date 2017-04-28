@@ -23,12 +23,13 @@
                         <td>".$producto[0]."</td>
                         <td>".$producto[1]."</td>
                         <td><img src='archivos/".$producto[2]."' style='width:100px'></td>
-                        <td><input type='button' class='btn btn-primary' value='Editar' onclick='editarProducto(\"".$producto[0]."\")'>
-                        <input type='button' class='btn btn-primary' value='Eliminar' onclick='eliminarProducto(\"".$producto[0]."\")'></td>
+                        <td><input type='button' class='btn btn-warning' value='Editar' onclick='editarProducto(\"".$producto[0]."\")'>
+                        <input type='button' class='btn btn-danger' value='Eliminar' onclick='eliminarProducto(\"".$producto[0]."\")'></td>
                         </tr>";
             }
         }
         $grilla .= "</table>";
+        fclose($file);
         echo $grilla;
         break;
 
@@ -38,7 +39,7 @@
         $destino = "tmp/". $archivo_tmp;
         move_uploaded_file($_FILES["archivo"]["tmp_name"], $destino);
         $response["html"] = "<img src='".$destino."' class='imgMuestra'>
-                            <br><input type='button' value='Deshacer' onclick='deshacerFoto(\"".$destino."\")' class='btn btn-success'>
+                            <br><input type='button' value='Deshacer' onclick='deshacerFoto(\"".$destino."\")' class='btn btn-danger'>
                             <input type='hidden' id='hdnArchivoTemp' value='".$archivo_tmp."' />";
         // var_dump($response);
         echo json_encode($response);
@@ -62,5 +63,25 @@
         copy("tmp/".$archivo, "archivos/".$archivo);
 
         break;
+
+    case "eliminarProducto":
+        $codBarra = $_POST["codBarra"];
+        $lineaABorrar = "";
+        $imagenABorrar = "";
+
+        $file = fopen("archivos/productos.txt", "r");
+        while(!feof($file)){
+            $linea = fgets($file);
+            $producto = explode(" - ", $linea);
+            if(trim($producto[0]) == $codBarra){
+                $lineaABorrar = $linea;
+                $imagenABorrar = trim($producto[2]);
+            }
+        }
+        fclose($file);
+        unlink("archivos/".$imagenABorrar);
+        $contents = file_get_contents("archivos/productos.txt");
+        $contents = str_replace($lineaABorrar, '', $contents);
+        file_put_contents("archivos/productos.txt", $contents);
     }
 ?>

@@ -98,3 +98,20 @@ function agregarProducto(){
     $request.open("POST", $url, true);
     $request.send(formData);
 }
+
+function eliminarProducto(prod){
+    var formData = new FormData();
+    formData.append("codBarra", prod);
+    formData.append("accion", "eliminarProducto");
+
+    $request = new XMLHttpRequest();
+    $request.onreadystatechange = function(){
+        if($request.readyState == 4 && $request.status == 200){
+            mostrarGrilla();
+            limpiarCampos();
+        }
+    };
+
+    $request.open("POST", $url, true);
+    $request.send(formData);
+}
