@@ -3,24 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script type="text/javascript">
-    if(typeof(Storage) != "undefined"){
+    if(typeof(Storage) !== undefined){
         //Seteo un valor a localStorage
-        localStorage.setItem("autor", "Matias"); //localStorage.autor = "Matias";
+        // localStorage.setItem("autor", "Matias"); //localStorage.autor = "Matias";
 
         //Obtengo un valor de localStorage
-        var autor = localStorage.getItem("autor"); //localStorage.autor;
+        // var autor = localStorage.getItem("autor"); //localStorage.autor;
 
         //Elimino un valor de localStorage
-        // localStorage.removeItem("autor");
+        localStorage.removeItem("autor");
+
+        if(localStorage.usuario !== undefined){
+            window.location.href = "home.html";
+        }
     }
     else{
         alert("Storage no esta instalado");
     }
+
+    function loginUsuario(){
+        localStorage.usuario = $("#usuario").val();
+        window.location.href = "home.html";
+    }
     </script>
 </head>
 <body>
-    
+    <form action="">
+        <input type="text" name="usuario" placeholder="usuario">
+        <input type="password" name="password" placeholder="password">
+        <input type="button" id="btnSubmit" onclick="loginUsuario()" value="Enviar">
+    </form>
 </body>
 </html>

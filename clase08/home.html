@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <script type="text/javascript">
+    if(typeof(Storage) !== "undefined"){
+        if(localStorage.usuario !== 'undefined'){
+            window.location.href = "home.html";
+            alert(localStorage.usuario);
+        }
+    }
+    else{
+        alert("Storage no esta instalado");
+    }
+    </script>
+
+</head>
+<body>
+    <h1>HOLA ESTAS LOGUEADO</h1>
+</body>
+</html>
