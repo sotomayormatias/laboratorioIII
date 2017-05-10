@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <script type="text/javascript">
+    if(typeof(Storage) != "undefined"){
+        //Seteo un valor a localStorage
+        localStorage.setItem("autor", "Matias"); //localStorage.autor = "Matias";
+
+        //Obtengo un valor de localStorage
+        var autor = localStorage.getItem("autor"); //localStorage.autor;
+
+        //Elimino un valor de localStorage
+        // localStorage.removeItem("autor");
+    }
+    else{
+        alert("Storage no esta instalado");
+    }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
