@@ -221,7 +221,7 @@ var DATA = (function () {
       'guid': '3988e5a2-6986-45e2-99ab-45a1af4b6c67',
       'isActive': false,
       'balance': '$2,540.73',
-      'age': 24,
+      'age': 40,
       'name': 'David Oneil',
       'gender': 'male',
       'company': 'ZENCO',
